@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.common.JwtTokenUtils;
 import com.example.dao.UserDao;
 import com.example.entity.Params;
 import com.example.entity.User;
@@ -54,6 +55,14 @@ public class UserService {
         if(user2 == null){
             throw new CustomException("用户名或密码输入错误");
         }
+        // 生成该用户对应的token
+        String token = JwtTokenUtils.getToken(user2.getId().toString(), user2.getPassword());
+        user2.setToken(token);
         return user2;
     }
+
+    public User findById(Integer id) {
+        return userDao.selectByPrimaryKey(id);
+    }
+
 }

@@ -1,9 +1,6 @@
 package com.example.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Table(name = "user")
 public class User {
@@ -16,6 +13,19 @@ public class User {
     private String sex;
     private Integer age;
 
+    private String phone;
+
+    @Transient
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -23,8 +33,6 @@ public class User {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    private String phone;
 
     public String getName() {
         return name;
